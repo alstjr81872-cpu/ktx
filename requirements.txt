@@ -1,0 +1,2 @@
+# Reproducible, hash-verified dependencies live in requirements-korail.lock.
+pykorail==0.2.1
