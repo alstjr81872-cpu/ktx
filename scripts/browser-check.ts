@@ -37,6 +37,17 @@ async function main() {
       "부산",
     );
     await page.getByRole("button", { name: "출발역과 도착역 바꾸기" }).click();
+    await page.getByRole("button", { name: "출발역 전체 역 목록 열기" }).click();
+    const stationList = page.getByRole("listbox", { name: "출발역 역 목록" });
+    assert.deepEqual(await stationList.getByRole("option").allTextContents().then(xs => xs.slice(0, 3).map(x => x.trim())), ["서울", "서대구", "동대구"]);
+    await stationList.getByRole("option", { name: "서대구", exact: true }).click();
+    assert.equal(await page.getByRole("combobox", { name: "출발역" }).inputValue(), "서대구");
+    await page.getByRole("group", { name: "도착역 즐겨찾기", exact: true }).getByRole("button", { name: "동대구", exact: true }).click();
+    assert.equal(await page.getByRole("combobox", { name: "출발역" }).inputValue(), "서대구");
+    assert.equal(await page.getByRole("combobox", { name: "도착역" }).inputValue(), "동대구");
+    await page.getByRole("group", { name: "출발역 즐겨찾기", exact: true }).getByRole("button", { name: "서울", exact: true }).click();
+    await page.getByRole("combobox", { name: "도착역" }).fill("부산");
+    await page.getByRole("option", { name: "부산", exact: true }).click();
     await page.getByRole("combobox", { name: "출발역" }).fill("ㅅㅇ");
     await page.getByRole("option", { name: "서울", exact: true }).click();
     await page.getByRole("button", { name: /^오후/ }).click();

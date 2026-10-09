@@ -35,7 +35,7 @@ import {
   Zap,
 } from "lucide-react";
 import { defaultConfig, kstDate, parseConfig } from "@/lib/config";
-import { searchStations } from "@/lib/stations";
+import { searchStations, FAVORITE_STATIONS } from "@/lib/stations";
 import {
   availableSeats,
   isActive,
@@ -104,14 +104,19 @@ function StationInput({
 }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(-1);
-  const options = searchStations(value);
+  const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const options = searchStations(query);
   const id = label === "출발역" ? "departure" : "arrival";
   return (
-    <div className="station-field">
+    <div className="station-field" onBlur={(e) => {
+      if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
+    }}>
       <label htmlFor={id}>{label}</label>
       <div className="input-icon">
         <MapPin size={17} />
         <input
+          ref={inputRef}
           id={id}
           role="combobox"
           aria-autocomplete="list"
@@ -121,10 +126,10 @@ function StationInput({
           autoComplete="off"
           value={value}
           disabled={disabled}
-          onFocus={() => setOpen(true)}
-          onBlur={() => setOpen(false)}
+          onFocus={() => { setQuery(""); setIndex(-1); setOpen(true); }}
           onChange={(e) => {
             onChange(e.target.value);
+            setQuery(e.target.value);
             setIndex(-1);
             setOpen(true);
           }}
@@ -146,10 +151,29 @@ function StationInput({
             }
           }}
         />
-        <ChevronDown size={14} />
+        <button type="button" className="station-toggle"
+          aria-label={`${label} 전체 역 목록 열기`} aria-expanded={open}
+          aria-controls={`${id}-options`} disabled={disabled}
+          onClick={() => {
+            const next = !open;
+            inputRef.current?.focus();
+            setQuery(""); setIndex(-1); setOpen(next);
+          }}>
+          <ChevronDown size={20} />
+        </button>
+      </div>
+      <div className="station-favorites" role="group" aria-label={`${label} 즐겨찾기`}>
+        <span>{label} 즐겨찾기</span>
+        <div>{FAVORITE_STATIONS.map((station) => (
+          <button type="button" key={station} disabled={disabled}
+            aria-pressed={value === station}
+            onClick={() => { onChange(station); setQuery(""); setOpen(false); }}>
+            {station}
+          </button>
+        ))}</div>
       </div>
       {open && options.length > 0 && (
-        <ul id={`${id}-options`} role="listbox" className="station-options">
+        <ul id={`${id}-options`} role="listbox" aria-label={`${label} 역 목록`} className="station-options">
           {options.map((s, i) => (
             <li
               role="option"

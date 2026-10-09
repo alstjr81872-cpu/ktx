@@ -1,7 +1,7 @@
 :root {
   --ink: #243e3a;
-  --muted: #83918b;
-  --mint: #239877;
+  --muted: #53665e;
+  --mint: #187b60;
   --mint-dark: #187b60;
   --mint-light: #eaf5ee;
   --line: #e5eae3;
@@ -18,7 +18,7 @@
 }
 body {
   margin: 0;
-  font-size: 14px;
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
 }
 button,
@@ -88,7 +88,7 @@ fieldset:disabled {
 label,
 .field-label {
   display: block;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: -0.2px;
   margin-bottom: 10px;
@@ -132,8 +132,8 @@ label,
   color: var(--mint);
 }
 .header-caption {
-  font-size: 12px;
-  color: #8b9690;
+  font-size: 15px;
+  color: #53665e;
   padding-left: 25px;
   border-left: 1px solid #dfe6df;
 }
@@ -142,7 +142,7 @@ label,
   display: flex;
   gap: 7px;
   align-items: center;
-  font-size: 12px;
+  font-size: 15px;
   color: #6b7d72;
   padding: 8px;
 }
@@ -161,7 +161,7 @@ main {
   padding: 48px 0 35px;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 2px;
   font-weight: 750;
   color: var(--mint);
@@ -186,8 +186,8 @@ h1 > span {
   color: var(--mint);
 }
 .intro p {
-  font-size: 13px;
-  color: #7d8981;
+  font-size: 16px;
+  color: #53665e;
   line-height: 1.8;
   letter-spacing: -0.3px;
 }
@@ -205,7 +205,7 @@ h1 > span {
   border: 1px solid #e0e5d5;
   border-radius: 9px;
   color: #899770;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
   margin-right: 28px;
 }
@@ -228,7 +228,7 @@ h1 > span {
   border-left: 1px solid #e0e5d5;
 }
 .intro-ticket strong {
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 1px;
   font-weight: 650;
 }
@@ -266,13 +266,13 @@ h1 > span {
   gap: 10px;
 }
 .card-heading h2 {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 750;
   letter-spacing: -0.5px;
 }
 .section-number {
   font-family: monospace;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   width: 23px;
   height: 23px;
@@ -283,7 +283,7 @@ h1 > span {
   place-items: center;
 }
 .card-heading > svg {
-  color: #a0afa2;
+  color: #53665e;
 }
 .search-card .card-heading {
   margin-bottom: 26px;
@@ -316,7 +316,7 @@ h1 > span {
 }
 .input-icon > svg {
   flex-shrink: 0;
-  color: #8c9c90;
+  color: #53665e;
 }
 .input-icon input,
 .input-icon select {
@@ -327,7 +327,7 @@ h1 > span {
   background: transparent;
   outline: none;
   color: var(--ink);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
 }
 .input-icon input:focus-visible,
@@ -336,14 +336,14 @@ h1 > span {
 }
 .station-field input {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 17px;
 }
 .swap-button {
   height: 45px;
   padding: 0;
   display: grid;
   place-items: center;
-  color: #829081;
+  color: #53665e;
 }
 .swap-button svg {
   transform: rotate(90deg);
@@ -370,7 +370,7 @@ h1 > span {
   align-items: center;
   gap: 8px;
   padding: 10px 6px;
-  font-size: 13px;
+  font-size: 16px;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -379,8 +379,8 @@ h1 > span {
   background: var(--mint-light);
 }
 .field-hint {
-  color: #9aa399;
-  font-size: 10px;
+  color: #53665e;
+  font-size: 14px;
   margin-top: 9px;
 }
 .two-fields {
@@ -408,8 +408,8 @@ h1 > span {
   gap: 6px;
 }
 .label-row > span:last-child:not(:first-child) {
-  font-size: 10px;
-  color: #9ca69b;
+  font-size: 14px;
+  color: #53665e;
   font-weight: 400;
 }
 .train-chips {
@@ -422,8 +422,8 @@ h1 > span {
   height: 36px;
   border: 1px solid #e0e5dc;
   border-radius: 7px;
-  color: #899287;
-  font-size: 11px;
+  color: #53665e;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -448,14 +448,14 @@ h1 > span {
   align-items: center;
 }
 .time-inputs > span {
-  color: #acb3a9;
-  font-size: 12px;
+  color: #53665e;
+  font-size: 15px;
 }
 .time-inputs .input-icon {
   padding: 0 11px;
 }
 .time-inputs input {
-  font-size: 13px;
+  font-size: 16px;
 }
 .time-presets {
   display: flex;
@@ -463,8 +463,8 @@ h1 > span {
   margin-top: 9px;
 }
 .time-presets button {
-  font-size: 10px;
-  color: #7d8d7f;
+  font-size: 14px;
+  color: #53665e;
   background: #f3f5ee;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -473,9 +473,9 @@ h1 > span {
   white-space: nowrap;
 }
 .time-presets button span {
-  font-size: 8px;
+  font-size: 14px;
   margin-left: 3px;
-  color: #8a968a;
+  color: #53665e;
 }
 .time-presets button:hover,
 .time-presets button.active {
@@ -494,8 +494,8 @@ h1 > span {
   flex: 1;
   height: 34px;
   border-radius: 5px;
-  font-size: 12px;
-  color: #879384;
+  font-size: 15px;
+  color: #53665e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -516,10 +516,10 @@ h1 > span {
   margin-top: 24px;
 }
 .interval-box .field-label {
-  font-size: 11px;
+  font-size: 14px;
 }
 .label-row .personal-tag {
-  font-size: 9px !important;
+  font-size: 14px !important;
   color: #859b79 !important;
 }
 .interval-options {
@@ -534,12 +534,12 @@ h1 > span {
   border: 1px solid #dfe6d9;
   border-radius: 7px;
   height: 36px;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
 .interval-options button span {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   margin-left: 2px;
 }
@@ -565,8 +565,8 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #8b9b81;
-  font-size: 10px;
+  color: #53665e;
+  font-size: 14px;
   margin-top: 11px;
 }
 .start-button {
@@ -580,7 +580,7 @@ h1 > span {
   color: white;
   border-radius: 9px;
   font-weight: 650;
-  font-size: 14px;
+  font-size: 17px;
   box-shadow: 0 3px 0 #187954;
   transition:
     background 0.2s,
@@ -607,8 +607,8 @@ h1 > span {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: #8f9d8b;
-  font-size: 9px;
+  color: #53665e;
+  font-size: 14px;
   margin-top: 16px;
   line-height: 1.7;
   white-space: nowrap;
@@ -631,8 +631,8 @@ h1 > span {
   background: #f0f2eb;
   border: 1px solid #e5e9df;
   border-radius: 30px;
-  font-size: 10px;
-  color: #919e8b;
+  font-size: 14px;
+  color: #53665e;
   padding: 6px 9px;
   white-space: nowrap;
 }
@@ -822,12 +822,12 @@ h1 > span {
 .spark-one {
   top: 65px;
   right: 71px;
-  font-size: 16px;
+  font-size: 19px;
 }
 .spark-two {
   top: 85px;
   left: 77px;
-  font-size: 14px;
+  font-size: 17px;
 }
 .small-pill {
   display: inline-flex;
@@ -836,8 +836,8 @@ h1 > span {
   background: #f0f3e8;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #8b9a7d;
-  font-size: 10px;
+  color: #53665e;
+  font-size: 14px;
 }
 .empty-state h3 {
   font-size: 26px;
@@ -847,8 +847,8 @@ h1 > span {
   font-weight: 650;
 }
 .empty-state p {
-  font-size: 12px;
-  color: #919b8d;
+  font-size: 15px;
+  color: #53665e;
   line-height: 1.9;
   margin-top: 13px;
   letter-spacing: -0.15px;
@@ -859,7 +859,7 @@ h1 > span {
   align-items: center;
   gap: 18px;
   margin-top: 29px;
-  font-size: 12px;
+  font-size: 15px;
   color: #6b816f;
   font-weight: 600;
 }
@@ -867,7 +867,7 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #97b79e;
+  color: #53665e;
 }
 .route-dots i {
   height: 2px;
@@ -885,8 +885,8 @@ h1 > span {
   gap: 8px;
   background: #f9faf4;
   padding: 14px 24px;
-  font-size: 9px;
-  color: #9aa58f;
+  font-size: 14px;
+  color: #53665e;
 }
 .monitor-footer > span:first-child {
   display: flex;
@@ -917,14 +917,14 @@ h1 > span {
   color: #bc9d62;
 }
 .notification-heading h3 {
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: -0.3px;
   font-weight: 700;
 }
 .notification-heading p {
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 6px;
-  color: #9aa392;
+  color: #53665e;
 }
 .notification-options {
   display: flex;
@@ -942,12 +942,12 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
+  font-size: 14px;
   white-space: nowrap;
   color: #6e806e;
 }
 .notification-options > div > span > svg {
-  color: #8f9f8c;
+  color: #53665e;
 }
 .toggle {
   height: 19px;
@@ -980,8 +980,8 @@ h1 > span {
   align-items: center;
   gap: 4px;
   padding: 4px 0;
-  font-size: 9px;
-  color: #8c9b86;
+  font-size: 14px;
+  color: #53665e;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -992,7 +992,7 @@ h1 > span {
   margin: 0 1px;
 }
 .permission-button {
-  font-size: 9px;
+  font-size: 14px;
   border: 1px solid #d9e3d3;
   background: #f6f8f0;
   padding: 5px 7px;
@@ -1011,16 +1011,16 @@ h1 > span {
   align-items: flex-start;
   gap: 12px;
   padding: 8px 10px;
-  color: #afac88;
+  color: #53665e;
 }
 .little-note p {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.9;
-  color: #929b89;
+  color: #53665e;
 }
 .little-note strong {
   font-weight: 500;
-  color: #798b74;
+  color: #53665e;
 }
 .note-line {
   flex: 1;
@@ -1033,8 +1033,8 @@ h1 > span {
   gap: 6px;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  color: #94a08c;
+  font-size: 14px;
+  color: #53665e;
   padding: 6px 0;
 }
 .demo-button > span {
@@ -1054,25 +1054,25 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 20px;
-  color: #a4ac9e;
-  font-size: 9px;
+  color: #53665e;
+  font-size: 14px;
   flex-wrap: wrap;
 }
 .site-footer > span:first-child {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #82967c;
+  color: #53665e;
   font-weight: 600;
 }
 .site-footer p {
-  font-size: 9px;
+  font-size: 14px;
   margin-left: auto;
 }
 .footer-small {
-  font-size: 8px;
+  font-size: 14px;
   letter-spacing: 0.5px;
-  color: #aab1a3;
+  color: #53665e;
 }
 .monitor-controls {
   display: flex;
@@ -1086,7 +1086,7 @@ h1 > span {
   gap: 7px;
   min-height: 48px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
 }
 .pause-button {
@@ -1098,7 +1098,7 @@ h1 > span {
   flex: 1;
   border: 1px solid var(--line);
   background: #f6f7f1;
-  color: #7e8c7a;
+  color: #53665e;
 }
 .inline-error,
 .provider-error {
@@ -1106,7 +1106,7 @@ h1 > span {
   color: #a05e37;
   border: 1px solid #efdec9;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.7;
   padding: 12px;
   margin-top: 15px;
@@ -1129,8 +1129,8 @@ h1 > span {
   justify-content: space-between;
 }
 .route-date {
-  font-size: 11px;
-  color: #859480;
+  font-size: 14px;
+  color: #53665e;
 }
 .route-summary h3 {
   font-size: 26px;
@@ -1141,11 +1141,11 @@ h1 > span {
   margin: 12px 0;
 }
 .route-summary h3 svg {
-  color: #98b097;
+  color: #53665e;
 }
 .route-summary p {
-  font-size: 10px;
-  color: #889782;
+  font-size: 14px;
+  color: #53665e;
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
@@ -1155,7 +1155,7 @@ h1 > span {
   place-items: center;
   border: 1px solid #dfebd9;
   background: #edf5e8;
-  color: #77a187;
+  color: #53665e;
   border-radius: 50%;
   width: 69px;
   height: 69px;
@@ -1191,8 +1191,8 @@ h1 > span {
   border-right: 0;
 }
 .stats-row > div > span {
-  font-size: 10px;
-  color: #8a9982;
+  font-size: 14px;
+  color: #53665e;
   display: block;
 }
 .stats-row strong {
@@ -1205,14 +1205,14 @@ h1 > span {
   min-height: 29px;
 }
 .stats-row strong small {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   margin-left: 5px;
-  color: #91a089;
+  color: #53665e;
   letter-spacing: 0;
 }
 .stats-row .scanning-label {
-  font-size: 14px;
+  font-size: 17px;
   padding-top: 7px;
   display: block;
   letter-spacing: -0.3px;
@@ -1227,28 +1227,28 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 9px;
-  color: #9aa98e;
+  font-size: 14px;
+  color: #53665e;
   margin-top: 12px;
   min-height: 20px;
 }
 .connection-label {
   margin-left: auto;
-  color: #79a081;
-  font-size: 9px;
+  color: #53665e;
+  font-size: 14px;
 }
 .disconnected {
   color: #b48d57;
 }
 .provider-error strong {
-  font-size: 12px;
+  font-size: 15px;
 }
 .provider-error p {
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 4px;
 }
 .provider-error > span {
-  font-size: 10px;
+  font-size: 14px;
   display: block;
   margin-top: 5px;
 }
@@ -1260,17 +1260,17 @@ h1 > span {
   margin-bottom: 12px;
 }
 .results-heading h4 {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 650;
 }
 .results-heading h4 > span {
   margin-left: 4px;
   color: var(--mint);
-  font-size: 11px;
+  font-size: 14px;
 }
 .results-heading > span {
-  font-size: 9px;
-  color: #97a58e;
+  font-size: 14px;
+  color: #53665e;
 }
 .train-results {
   display: flex;
@@ -1299,14 +1299,14 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
-  color: #82967c;
+  font-size: 14px;
+  color: #53665e;
 }
 .train-name b {
   font-weight: 400;
 }
 .found-label {
-  font-size: 9px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1332,19 +1332,19 @@ h1 > span {
   font-variant-numeric: tabular-nums;
 }
 .schedule-line {
-  color: #adbaa5;
+  color: #53665e;
 }
 .seat-states {
   margin-left: auto;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-size: 9px;
+  font-size: 14px;
 }
 .seat-states > span {
   display: flex;
   gap: 8px;
-  color: #9aa68f;
+  color: #53665e;
 }
 .seat-states b {
   font-weight: 500;
@@ -1362,20 +1362,20 @@ h1 > span {
   margin-top: 12px;
   padding-top: 10px;
   border-top: 1px dashed #d8e8cf;
-  font-size: 10px;
+  font-size: 14px;
   color: var(--mint);
   font-weight: 600;
 }
 .no-results {
   padding: 33px 5px;
   text-align: center;
-  color: #a0b194;
+  color: #53665e;
 }
 .no-results svg {
   opacity: 0.7;
 }
 .no-results p {
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 12px;
   line-height: 1.7;
 }
@@ -1388,7 +1388,7 @@ h1 > span {
   border-radius: 7px;
   background: #fff3d9;
   color: #a98a45;
-  font-size: 10px;
+  font-size: 14px;
 }
 .demo-banner + .active-panel {
   padding-top: 20px;
@@ -1399,7 +1399,7 @@ h1 > span {
   align-items: flex-start;
   background: #f0f5eb;
   color: #7b9372;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.7;
   padding: 10px;
   border-radius: 6px;
@@ -1423,11 +1423,11 @@ h1 > span {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 12px;
+  font-size: 15px;
 }
 .history-heading > span {
-  font-size: 9px;
-  color: #9bab91;
+  font-size: 14px;
+  color: #53665e;
 }
 .history-row {
   width: 100%;
@@ -1450,22 +1450,22 @@ h1 > span {
   margin: 0 5px;
 }
 .history-row strong {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
 }
 .history-row small {
   display: block;
-  font-size: 9px;
-  color: #91a185;
+  font-size: 14px;
+  color: #53665e;
   margin-top: 5px;
 }
 .history-row time {
   margin-left: auto;
-  font-size: 9px;
-  color: #9dac91;
+  font-size: 14px;
+  color: #53665e;
 }
 .history-row > svg {
-  color: #9aac92;
+  color: #53665e;
 }
 .modal-backdrop {
   position: fixed;
@@ -1497,7 +1497,7 @@ h1 > span {
   position: absolute;
   right: 16px;
   top: 16px;
-  color: #91a188;
+  color: #53665e;
   display: grid;
   place-items: center;
   padding: 5px;
@@ -1519,7 +1519,7 @@ h1 > span {
 }
 .alert-modal > .eyebrow {
   justify-content: center;
-  font-size: 9px;
+  font-size: 14px;
 }
 .alert-modal h2 {
   font-size: 26px;
@@ -1527,8 +1527,8 @@ h1 > span {
   margin-top: 12px;
 }
 .alert-modal > p {
-  font-size: 11px;
-  color: #8f9d87;
+  font-size: 14px;
+  color: #53665e;
   margin-top: 10px;
   line-height: 1.7;
 }
@@ -1540,8 +1540,8 @@ h1 > span {
   border-radius: 12px;
 }
 .alert-ticket > span {
-  font-size: 10px;
-  color: #819378;
+  font-size: 14px;
+  color: #53665e;
 }
 .alert-ticket h3 {
   display: flex;
@@ -1553,10 +1553,10 @@ h1 > span {
   color: #35523c;
 }
 .alert-ticket h3 svg {
-  color: #8fa787;
+  color: #53665e;
 }
 .alert-ticket > strong {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.2px;
 }
@@ -1574,22 +1574,22 @@ h1 > span {
   background: #e5f1df;
   padding: 5px 9px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .alert-modal .alert-found-time {
-  font-size: 9px;
+  font-size: 14px;
   margin: 13px 0 22px;
 }
 .alert-modal .start-button {
-  font-size: 13px;
+  font-size: 16px;
   box-shadow: none;
 }
 .alert-modal .start-button svg {
   margin-left: 0;
 }
 .continue-button {
-  font-size: 11px;
-  color: #94a08a;
+  font-size: 14px;
+  color: #53665e;
   padding: 17px 0 0;
 }
 .guide-modal {
@@ -1609,7 +1609,7 @@ h1 > span {
   margin: 25px 0;
 }
 .guide-modal li {
-  font-size: 13px;
+  font-size: 16px;
   padding-left: 6px;
   color: var(--mint);
 }
@@ -1618,14 +1618,14 @@ h1 > span {
   font-weight: 600;
 }
 .guide-modal li p {
-  color: #89997d;
-  font-size: 12px;
+  color: #53665e;
+  font-size: 15px;
   line-height: 1.8;
   margin-top: 5px;
 }
 .guide-note {
-  font-size: 11px;
-  color: #8e9c80;
+  font-size: 14px;
+  color: #53665e;
   line-height: 1.9;
   background: #f1f5e9;
   border-radius: 9px;
@@ -1706,10 +1706,10 @@ h1 > span {
     padding: 23px 18px 0;
   }
   .card-heading h2 {
-    font-size: 14px;
+    font-size: 17px;
   }
   .status-badge {
-    font-size: 9px;
+    font-size: 14px;
     padding: 5px 7px;
   }
   .empty-state {
@@ -1720,11 +1720,11 @@ h1 > span {
     font-size: 24px;
   }
   .empty-state p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .monitor-footer {
     padding: 13px 16px;
-    font-size: 8px;
+    font-size: 14px;
   }
   .notification-card {
     padding: 21px 18px;
@@ -1755,7 +1755,7 @@ h1 > span {
     padding: 12px;
   }
   .seat-states {
-    font-size: 8px;
+    font-size: 14px;
   }
   .intro-ticket {
     margin-right: 13px;
@@ -1770,7 +1770,7 @@ h1 > span {
     padding: 7px;
   }
   .demo-button {
-    font-size: 9px;
+    font-size: 14px;
   }
 }
 @media (max-width: 800px) {
@@ -1793,10 +1793,10 @@ h1 > span {
     display: none;
   }
   .station-field input {
-    font-size: 13px;
+    font-size: 16px;
   }
   .chip {
-    font-size: 10px;
+    font-size: 14px;
     padding: 0 2px;
   }
   .train-chips {
@@ -1818,10 +1818,10 @@ h1 > span {
   }
   .time-presets button {
     padding: 6px 4px;
-    font-size: 9px;
+    font-size: 14px;
   }
   .time-presets button span {
-    font-size: 7px;
+    font-size: 14px;
     margin-left: 2px;
   }
   .interval-box {
@@ -1831,24 +1831,24 @@ h1 > span {
     gap: 5px;
   }
   .under-button {
-    font-size: 8px;
+    font-size: 14px;
   }
   .card-heading > div {
     gap: 7px;
   }
   .card-heading h2 {
-    font-size: 13px;
+    font-size: 16px;
   }
   .section-number {
     width: 21px;
     height: 21px;
-    font-size: 9px;
+    font-size: 14px;
   }
   .monitor-card > .card-heading {
     padding: 22px 15px 0;
   }
   .status-badge {
-    font-size: 8px;
+    font-size: 14px;
   }
   .monitor-footer > span:last-child {
     display: none;
@@ -1874,7 +1874,7 @@ h1 > span {
     font-size: 23px;
   }
   .empty-state p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .empty-route {
     gap: 13px;
@@ -1889,14 +1889,14 @@ h1 > span {
     left: 34px;
   }
   .notification-heading h3 {
-    font-size: 12px;
+    font-size: 15px;
   }
   .intro-ticket {
     padding: 17px 20px;
     margin-right: 7px;
   }
   .intro p {
-    font-size: 12px;
+    font-size: 15px;
   }
   h1 {
     font-size: 31px;
@@ -1919,7 +1919,7 @@ h1 > span {
     gap: 9px;
   }
   .route-summary p {
-    font-size: 9px;
+    font-size: 14px;
     gap: 4px;
   }
   .stats-row > div {
@@ -1935,7 +1935,7 @@ h1 > span {
     padding: 11px 9px;
   }
   .train-schedule > strong {
-    font-size: 15px;
+    font-size: 18px;
   }
   .train-schedule {
     gap: 5px;
@@ -1951,12 +1951,12 @@ h1 > span {
   }
   .demo-button {
     flex-wrap: wrap;
-    font-size: 9px;
+    font-size: 14px;
   }
   .demo-banner {
     margin-left: 14px;
     margin-right: 14px;
-    font-size: 9px;
+    font-size: 14px;
   }
 }
 @media (max-width: 650px) {
@@ -1982,7 +1982,7 @@ h1 > span {
     width: 21px;
   }
   .guide-button {
-    font-size: 11px;
+    font-size: 14px;
   }
   .guide-button svg {
     width: 16px;
@@ -1997,7 +1997,7 @@ h1 > span {
     display: none;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: 14px;
     letter-spacing: 1.6px;
   }
   h1 {
@@ -2006,7 +2006,7 @@ h1 > span {
     letter-spacing: -1.4px;
   }
   .intro p {
-    font-size: 11px;
+    font-size: 14px;
     max-width: 300px;
     line-height: 1.8;
   }
@@ -2019,7 +2019,7 @@ h1 > span {
     border-radius: 14px;
   }
   .card-heading h2 {
-    font-size: 16px;
+    font-size: 19px;
   }
   .card-heading > div {
     gap: 10px;
@@ -2027,7 +2027,7 @@ h1 > span {
   .section-number {
     width: 23px;
     height: 23px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .search-card .card-heading {
     margin-bottom: 24px;
@@ -2045,10 +2045,10 @@ h1 > span {
     display: block;
   }
   .station-field input {
-    font-size: 14px;
+    font-size: 17px;
   }
   .field-hint {
-    font-size: 10px;
+    font-size: 14px;
   }
   .two-fields {
     gap: 12px;
@@ -2062,7 +2062,7 @@ h1 > span {
     display: block;
   }
   .chip {
-    font-size: 11px;
+    font-size: 14px;
     height: 38px;
   }
   .train-chips {
@@ -2072,17 +2072,17 @@ h1 > span {
     display: block;
   }
   .time-inputs input {
-    font-size: 13px;
+    font-size: 16px;
   }
   .time-presets {
     gap: 6px;
   }
   .time-presets button {
-    font-size: 10px;
+    font-size: 14px;
     padding: 7px 5px;
   }
   .time-presets button span {
-    font-size: 8px;
+    font-size: 14px;
   }
   .interval-box {
     padding: 16px;
@@ -2094,7 +2094,7 @@ h1 > span {
     height: 39px;
   }
   .under-button {
-    font-size: 9px;
+    font-size: 14px;
   }
   .start-button {
     min-height: 51px;
@@ -2106,7 +2106,7 @@ h1 > span {
     padding: 24px 22px 0;
   }
   .status-badge {
-    font-size: 10px;
+    font-size: 14px;
     padding: 6px 8px;
   }
   .empty-state {
@@ -2124,7 +2124,7 @@ h1 > span {
     font-size: 25px;
   }
   .empty-state p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .empty-route {
     margin-top: 23px;
@@ -2135,17 +2135,17 @@ h1 > span {
   }
   .monitor-footer {
     padding: 14px 21px;
-    font-size: 9px;
+    font-size: 14px;
   }
   .monitor-footer > span:last-child {
     display: block;
-    font-size: 8px;
+    font-size: 14px;
   }
   .notification-card {
     padding: 22px;
   }
   .notification-heading h3 {
-    font-size: 13px;
+    font-size: 16px;
   }
   .notification-options {
     gap: 12px;
@@ -2159,10 +2159,10 @@ h1 > span {
     gap: 10px;
   }
   .notification-options > div > span {
-    font-size: 10px;
+    font-size: 14px;
   }
   .sound-test {
-    font-size: 9px;
+    font-size: 14px;
     margin-left: 0;
   }
   .notification-divider {
@@ -2173,7 +2173,7 @@ h1 > span {
     padding: 9px;
   }
   .demo-button {
-    font-size: 10px;
+    font-size: 14px;
     line-height: 1.8;
   }
   .site-footer {
@@ -2185,10 +2185,10 @@ h1 > span {
   .site-footer p {
     order: 3;
     width: 100%;
-    font-size: 9px;
+    font-size: 14px;
   }
   .footer-small {
-    font-size: 8px;
+    font-size: 14px;
   }
   .active-panel {
     padding: 24px 21px;
@@ -2198,7 +2198,7 @@ h1 > span {
     gap: 15px;
   }
   .route-summary p {
-    font-size: 10px;
+    font-size: 14px;
     gap: 7px;
   }
   .radar {
@@ -2233,14 +2233,14 @@ h1 > span {
     width: 16px;
   }
   .seat-states {
-    font-size: 9px;
+    font-size: 14px;
   }
   .seat-states > span {
     gap: 8px;
   }
   .demo-banner {
     margin: 17px 21px 0;
-    font-size: 10px;
+    font-size: 14px;
   }
   .history-card {
     padding: 21px;
@@ -2271,7 +2271,7 @@ h1 > span {
     font-size: 26px;
   }
   .time-presets button span {
-    font-size: 7px;
+    font-size: 14px;
   }
   .time-inputs .input-icon > svg {
     display: none;
@@ -2301,10 +2301,10 @@ h1 > span {
     padding-right: 17px;
   }
   .status-badge {
-    font-size: 9px;
+    font-size: 14px;
   }
   .card-heading h2 {
-    font-size: 14px;
+    font-size: 17px;
   }
   .train-schedule {
     gap: 7px;
@@ -2322,3 +2322,33 @@ h1 > span {
     scroll-behavior: auto !important;
   }
 }
+
+/* Readable station controls at every viewport size. */
+.station-field { min-width: 0; }
+.station-field .input-icon { padding-right: 2px; }
+.station-field input { min-width: 0; font-size: 18px; }
+.station-toggle { flex: 0 0 40px; height: 42px; display: grid; place-items: center; border-radius: 6px; color: #245a48; background: #eaf5ee; }
+.station-options { top: 76px; max-height: 300px; overflow-y: auto; border-color: #8fa99b; z-index: 20; }
+.station-options li { min-height: 44px; font-size: 17px; }
+.station-favorites { margin-top: 12px; }
+.station-favorites > span { display: block; font-size: 14px; font-weight: 600; color: #53665e; margin-bottom: 7px; }
+.station-favorites > div { display: flex; flex-wrap: wrap; gap: 6px; }
+.station-favorites button { min-height: 36px; padding: 6px 9px; border: 1px solid #9cb7a8; border-radius: 7px; background: #fffefa; font-size: 15px; color: #294e40; }
+.station-favorites button[aria-pressed="true"] { background: #187b60; border-color: #187b60; color: white; font-weight: 700; }
+.stations-row { align-items: start; }
+.swap-button { margin-top: 28px; }
+.input-icon { min-height: 48px; }
+button:focus-visible, input:focus-visible { outline: 3px solid #187b60; outline-offset: 3px; }
+@media (max-width: 900px) { .workspace { grid-template-columns: 1fr; } }
+@media (max-width: 420px) {
+  .stations-row { grid-template-columns: 1fr; gap: 12px; }
+  .swap-button { margin: 0; height: 32px; justify-self: center; width: 44px; }
+  .swap-button svg { transform: none; }
+}
+.workspace > *, fieldset, .two-fields > *, .time-fields > * { min-width: 0; }
+.input-icon input, .input-icon select { min-width: 0; }
+@media (max-width: 600px) {
+  .two-fields { grid-template-columns: 1fr; }
+  .train-chips { flex-wrap: wrap; }
+}
+.time-presets { display: flex; flex-wrap: wrap; }

@@ -1,5 +1,6 @@
+export const FAVORITE_STATIONS = ["서울", "서대구", "동대구"];
 export const STATIONS = [
-  "서울",
+  ...FAVORITE_STATIONS,
   "용산",
   "영등포",
   "광명",
@@ -8,8 +9,6 @@ export const STATIONS = [
   "오송",
   "대전",
   "김천구미",
-  "서대구",
-  "동대구",
   "경주",
   "울산",
   "부산",
@@ -131,5 +130,5 @@ export function searchStations(query: string) {
       .join("");
   return STATIONS.filter(
     (s) => s.toLowerCase().includes(q) || initials(s).includes(q),
-  ).slice(0, 7);
+  );
 }
