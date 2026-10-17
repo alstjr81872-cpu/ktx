@@ -34,7 +34,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { defaultConfig, kstDate, parseConfig } from "@/lib/config";
+import { defaultConfig, endOfSearch, kstDate, parseConfig } from "@/lib/config";
 import { searchStations, FAVORITE_STATIONS } from "@/lib/stations";
 import {
   availableSeats,
@@ -80,6 +80,9 @@ function writeStorage(key: string, value: string) {
     /* Private browsing may disable storage. */
   }
 }
+class ApiError extends Error {
+  constructor(message: string, readonly status: number) { super(message); }
+}
 async function api(url: string, options?: RequestInit) {
   const response = await fetch(url, {
     ...options,
@@ -88,7 +91,7 @@ async function api(url: string, options?: RequestInit) {
   });
   const body = await response.json();
   if (!response.ok)
-    throw new Error(body.error ?? "서버에 연결하지 못했습니다.");
+    throw new ApiError(body.error ?? "서버에 연결하지 못했습니다.", response.status);
   return body as MonitorSnapshot;
 }
 function StationInput({
@@ -227,6 +230,7 @@ export default function SeatWatch() {
   const [monitorId, setMonitorId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [connectionEpoch, setConnectionEpoch] = useState(0);
   const [connected, setConnected] = useState(false);
   const [sound, setSound] = useState(true);
   const [notificationPermission, setNotificationPermission] =
@@ -327,6 +331,7 @@ export default function SeatWatch() {
 
   const receive = useCallback(
     (snapshot: MonitorSnapshot) => {
+      writeStorage("intent", JSON.stringify({ config: snapshot.config, status: snapshot.status }));
       setMonitor(snapshot);
       setConfig(snapshot.config);
       const fresh = snapshot.alerts.filter((a) => !seenRef.current.has(a.id));
@@ -387,22 +392,47 @@ export default function SeatWatch() {
         setError("탐색 상태를 읽지 못했습니다. 새로고침해 주세요.");
       }
     };
+    let verifying = false;
     const verify = async () => {
+      if (verifying || cancelled) return;
+      verifying = true;
       try {
-        const snapshot = await api(`/api/monitor/${monitorId}`);
-        if (!cancelled) receive(snapshot);
-      } catch (e) {
-        if (cancelled) return;
-        // A missing session is permanent; a temporary network outage is retried by EventSource.
-        if (e instanceof Error && e.message.includes("서버가 재시작")) {
-          events.close();
-          setMonitorId(null);
-          setMonitor(null);
-          writeStorage("session", "");
-          setError(e.message);
+        let snapshot: MonitorSnapshot;
+        try {
+          snapshot = await api(`/api/monitor/${monitorId}`, { signal: AbortSignal.timeout(12000) });
+        } catch (e) {
+          if (cancelled || !(e instanceof ApiError) || e.status !== 404) throw e;
+          const saved = JSON.parse(readStorage("intent") ?? "null");
+          if (!saved || ["stopped", "expired"].includes(saved.status)) return;
+          if (Date.now() > endOfSearch(saved.config)) {
+            events.close();
+            writeStorage("session", "");
+            setMonitorId(null);
+            setNotice("설정한 출발 시간대가 지나 탐색을 마쳤습니다.");
+            return;
+          }
+          const savedConfig = parseConfig(saved.config);
+          if (cancelled || ["stopped", "expired"].includes(JSON.parse(readStorage("intent") ?? "null")?.status)) return;
+          snapshot = await api(`/api/monitor/${monitorId}`, {
+            method: "PUT", signal: AbortSignal.timeout(12000),
+            body: JSON.stringify({ config: savedConfig, paused: saved.status === "paused" }),
+          });
+          if (!cancelled) setNotice("서버 연결을 복구했습니다. 기존 조건으로 탐색을 이어갑니다.");
         }
-      }
+        if (!cancelled) {
+          receive(snapshot);
+          setError(null);
+          // A 404 closes EventSource permanently; create a fresh stream after recovery.
+          if (events.readyState === EventSource.CLOSED) setConnectionEpoch(v => v + 1);
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setConnected(false);
+          if (e instanceof ApiError && [400, 409].includes(e.status)) setError(e.message);
+        }
+      } finally { verifying = false; }
     };
+    const heartbeat = setInterval(() => { void verify(); }, 20000);
     events.onerror = () => {
       if (!cancelled) {
         setConnected(false);
@@ -413,13 +443,16 @@ export default function SeatWatch() {
       if (document.visibilityState === "visible") void verify();
     };
     document.addEventListener("visibilitychange", visible);
+    window.addEventListener("online", visible);
     void verify();
     return () => {
       cancelled = true;
+      clearInterval(heartbeat);
       events.close();
       document.removeEventListener("visibilitychange", visible);
+      window.removeEventListener("online", visible);
     };
-  }, [monitorId, receive]);
+  }, [monitorId, receive, connectionEpoch]);
 
   async function start(mode = config.mode) {
     setError(null);
@@ -447,6 +480,8 @@ export default function SeatWatch() {
     if (!monitor) return;
     setBusy(true);
     setError(null);
+    const previousIntent = readStorage("intent");
+    writeStorage("intent", JSON.stringify({ config: monitor.config, status: action === "stop" ? "stopped" : "paused" }));
     try {
       if (action === "resume" && soundRef.current) await primeAudio();
       receive(
@@ -460,6 +495,7 @@ export default function SeatWatch() {
         setPopup(null);
       }
     } catch (e) {
+      if (previousIntent) writeStorage("intent", previousIntent);
       setError(e instanceof Error ? e.message : "요청에 실패했습니다.");
     } finally {
       setBusy(false);
@@ -1357,11 +1393,10 @@ export default function SeatWatch() {
               </li>
             </ol>
             <div className="guide-note">
-              창을 모두 닫으면 연결 종료 후 약 90초와 현재 조회 주기 이내에
-              탐색이 끝나요. 기기가 절전 상태이면 알림이 늦어질 수 있어요.
+              창 연결이 잠시 끊겨도 설정한 시간대까지 탐색을 이어갑니다.
+              기기가 절전 상태이면 알림이 늦어질 수 있어요.
               새로고침 후에는 소리 테스트로 알림음을 다시 켜주세요. 탐색 조건과
-              세션은 이 브라우저에 저장되며, 서버 재시작 시 탐색을 다시 시작해야
-              해요.
+              세션은 이 브라우저에 저장되며, 서버 재시작 시 창을 열어두면 자동으로 복구해요.
             </div>
           </section>
         </div>

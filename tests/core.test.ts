@@ -10,7 +10,7 @@ import {
   ProviderError,
   TrainProvider,
 } from "../lib/provider";
-import { Monitor } from "../lib/monitor";
+import { Monitor, restoreMonitor } from "../lib/monitor";
 const now = Date.parse("2026-10-09T12:00:00+09:00");
 const config: SearchConfig = {
   ...defaultConfig(),
@@ -142,7 +142,7 @@ test("live adapter paginates and applies route time, train class and passenger f
       row("103000", { h_trn_no: "00103" }),
       row("113000", { h_trn_no: "00105" }),
     ]);
-  });
+  }, () => now);
   const results = await provider(
     { ...config, passengers: 2 },
     new AbortController().signal,
@@ -164,6 +164,7 @@ test("pagination must not silently return incomplete data", async () => {
         row("083000", { h_trn_no: String(100 + index) }),
       ),
     ),
+    () => now,
   );
   await assert.rejects(
     provider(config, new AbortController().signal),
@@ -270,7 +271,7 @@ test("requests never overlap and stop discards in-flight results", async () => {
   assert.equal(monitor.snapshot().alerts.length, 0);
   assert.equal(monitor.snapshot().nextCheckAt, null);
 });
-test("pause and resume retain state, disconnected sessions expire", async () => {
+test("pause and resume retain state, temporary disconnection does not expire searches", async () => {
   let clock = now;
   let calls = 0;
   const monitor = new Monitor(
@@ -292,8 +293,9 @@ test("pause and resume retain state, disconnected sessions expire", async () => 
   assert.equal(calls, 2);
   clock += 91000;
   await monitor.pollOnce();
-  assert.equal(calls, 2);
-  assert.equal(monitor.snapshot().status, "expired");
+  assert.equal(calls, 3);
+  assert.equal(monitor.snapshot().status, "waiting");
+  monitor.dispose();
 });
 test("departure-window expiry stops querying even with a connected browser", async () => {
   let clock = now;
@@ -395,7 +397,7 @@ test("pagination keeps trains sharing the last departure second of a page", asyn
       row("090000", { h_trn_no: "9103" }),
       row("113000", { h_trn_no: "105" }),
     ]);
-  });
+  }, () => now);
   const trains = await provider(config, new AbortController().signal);
   assert.deepEqual(
     trains.map((t) => t.number),
@@ -415,4 +417,25 @@ test("today's polling advances past the elapsed part of the selected range", asy
   );
   await provider(config, new AbortController().signal);
   assert.equal(actual, "094512");
+});
+
+test("restart recovery is idempotent and preserves intentional pause/stop", async () => {
+  const id = "150f6537-4ff8-4c8c-9aee-b7789345f821";
+  const future = { ...config, date: kstDate(Date.now() + 86400000) };
+  const recovered = restoreMonitor(id, future, false);
+  try {
+    await settle();
+    assert.equal(recovered.snapshot().id, id);
+    assert.equal(recovered.snapshot().attempts, 1);
+    assert.equal(restoreMonitor(id, future, false), recovered);
+    recovered.pause();
+    assert.equal(restoreMonitor(id, future, false).snapshot().status, "paused");
+    assert.throws(() => restoreMonitor("another-id", future, false), /다른 탐색/);
+    recovered.stop();
+    assert.equal(restoreMonitor(id, future, false).snapshot().status, "stopped");
+    const paused = restoreMonitor("77c241c2-fcd0-438c-871f-1f1a61ab3db6", future, true);
+    assert.equal(paused.snapshot().status, "paused");
+    assert.equal(paused.snapshot().attempts, 0);
+    paused.dispose();
+  } finally { recovered.dispose(); }
 });

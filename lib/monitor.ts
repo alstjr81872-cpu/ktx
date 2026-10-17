@@ -28,10 +28,11 @@ export class Monitor {
     private provider: TrainProvider,
     private now = Date.now,
     private autoSchedule = true,
+    id: string = randomUUID(),
   ) {
     this.lastSeen = now();
     this.state = {
-      id: randomUUID(),
+      id,
       config,
       status: "paused",
       startedAt: now(),
@@ -96,10 +97,7 @@ export class Monitor {
   async pollOnce() {
     if (this.disposed || this.controller || !isActive(this.state.status))
       return;
-    if (
-      this.now() > endOfSearch(this.state.config) ||
-      this.now() - this.lastSeen > 90000
-    ) {
+    if (this.now() > endOfSearch(this.state.config)) {
       this.stop("expired");
       return;
     }
@@ -219,5 +217,20 @@ export function getMonitor(id: string) {
   const monitor = registry.current;
   if (!monitor || monitor.snapshot().id !== id) return undefined;
   monitor.touch();
+  return monitor;
+}
+
+// Idempotent recovery: multiple tabs may restore the same session concurrently.
+export function restoreMonitor(id: string, config: SearchConfig, paused: boolean) {
+  const current = registry.current;
+  if (current?.snapshot().id === id) return current;
+  if (current && !["stopped", "expired"].includes(current.snapshot().status))
+    throw new Error("다른 탐색이 실행 중입니다. 기존 탐색을 확인해 주세요.");
+  current?.dispose();
+  const monitor = new Monitor(config,
+    config.mode === "demo" ? createDemoProvider() : liveProvider,
+    Date.now, true, id);
+  registry.current = monitor;
+  if (!paused) monitor.resume();
   return monitor;
 }

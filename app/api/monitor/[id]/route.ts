@@ -1,5 +1,6 @@
 import { checkOrigin, jsonError } from "@/lib/http";
-import { getMonitor } from "@/lib/monitor";
+import { parseConfig } from "@/lib/config";
+import { getMonitor, restoreMonitor } from "@/lib/monitor";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 type Context = { params: Promise<{ id: string }> };
@@ -33,4 +34,19 @@ export async function PATCH(request: Request, context: Context) {
   } catch {
     return jsonError("요청을 확인해 주세요.");
   }
+}
+
+export async function PUT(request: Request, context: Context) {
+  try { checkOrigin(request); } catch { return jsonError("허용되지 않은 요청입니다.", 403); }
+  const { id } = await context.params;
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id))
+    return jsonError("올바르지 않은 탐색 ID입니다.");
+  try {
+    const body = await request.json();
+    const config = parseConfig(body.config);
+    if (typeof body.paused !== "boolean") return jsonError("복구 상태를 확인해 주세요.");
+    try {
+      return Response.json(restoreMonitor(id, config, body.paused).snapshot());
+    } catch (e) { return jsonError(e instanceof Error ? e.message : "복구하지 못했습니다.", 409); }
+  } catch (e) { return jsonError(e instanceof Error ? e.message : "조건을 확인해 주세요."); }
 }
